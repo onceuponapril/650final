@@ -1,0 +1,47 @@
+<h1>Movie recommendation</h1>
+<form  method="POST" action="/keyword">
+<h1> Pick a movie you liked, let me guess what you may like</h1>
+ <ul>   
+        {% for movie in content %}
+    <li>
+            <label name="movie">{{movie}}</label>
+            <input type="hidden" name='title' value="{{movie}}"/>
+            <input type="radio" name="check"/>
+        </li>
+      
+  {% endfor %}
+</ul>
+<!-- <input type="text" value="i.e. funny" name="keyword"> -->
+<input type="submit" value="submit"/>
+</form>  
+
+
+<form  method="POST" action="/cf">
+<h1> Rate movies you watched, let me guess what you may like (0-5)</h1>
+
+<ul>   
+        {% for movie in collab %}
+    <li>
+            <label name="title" >{{movie.title}}</label>
+            <input type="hidden" name='id' value="{{movie.movieId}}"/>
+            <input type="number" step=0.01 name="rating"/>
+        </li>
+        
+    {% endfor %}
+</ul>
+<input type="submit" value="submit"/>  
+</form> 
+
+ <!-- <ul>   
+        {% for movie in movies %}
+    <li>
+            <label name="movie">{{movie["title"]}} </label>
+            <input type="hidden" name='id' value="{{movie['movieId']}}"/>
+            <input type="text" name="rating"/>
+        </li>
+      
+  {% endfor %}
+</ul> -->
+
+<!-- <input type="submit" value="submit"/> -->
+<!-- </form>       --> 
