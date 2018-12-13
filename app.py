@@ -13,25 +13,6 @@ def index():
         collab = model.collabmv()
 
         return render_template("index.html",content=content,collab=collab)
-        # if request.method == 'POST':
-        #    movie = model.metamovie()
-        #    return movie
-        # else:
-
-#         # if  request.form["keyword"] == "keyword":
-                
-
-#     if request.method == 'POST':
-#         # if  request.form["keyword"] == "keyword":
-#         return redirect('/keyword')
-#     else:
-#             return redirect('/userid')
-#         # elif request.form["number"] == "number":
-#         #         return redirect('/userid')     
-#     else:
-#         # data=model.recommendation().data_process()
-#         # movies=model.recommendation().movie_dict()
-#         return render_template("index.html")
 
 @app.route('/keyword', methods=['GET', 'POST'])
 def keyword():
@@ -46,13 +27,6 @@ def keyword():
     else:
         return render_template("index.html")
 
-@app.route('/userid', methods=['GET', 'POST'])
-def userid():
-    if request.method == 'POST':
-        return "userid"
-    else:
-        return render_template("index.html")
-
 @app.route('/cf',methods=['GET', 'POST'])
 def cf():
     if request.method == 'POST':
@@ -63,11 +37,6 @@ def cf():
         result= model.cf_recommend(movie_id,ratings)
         result=result["title"].to_json()
         return render_template("cf.html",title=result)
-        # return jsonify(result)
-
-        # cityname=hello().city
-        # input_city = request.form['cityname']
-        # return render_template("cf.html",rated=rated,recomm=recomm)
     else:
         return render_template("index.html")    
 

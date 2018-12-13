@@ -38,6 +38,13 @@ def content_recommendation(input):
     movie = pd.read_csv(url, error_bad_lines=False)
     movie_1 = movie.copy()
     movie_1["plot_keywords"] = movie_1["plot_keywords"].fillna(" ")
+    movie_1['director_name'] = movie_1['director_name'].fillna(" ")
+    movie_1['actor_1_name'] = movie_1['actor_1_name'].fillna(" ")
+    movie_1['actor_2_name'] = movie_1['actor_2_name'].fillna(" ")
+    movie_1['actor_3_name'] = movie_1['actor_3_name'].fillna(" ")
+    movie_1['content'] = movie_1.apply(lambda x: x['plot_keywords'] + x['director_name'] + x['actor_1_name'] + 
+                        x['actor_2_name'] + x['actor_3_name'], 1)
+    
     tf = TfidfVectorizer(
         analyzer="word", ngram_range=(1, 2), min_df=0, stop_words="english"
     )
